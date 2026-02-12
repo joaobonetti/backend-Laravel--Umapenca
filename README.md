@@ -1,59 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ??? API de Produtos Uma Penca ? Laravel 12
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## ?? Sobre o Projeto
 
-## About Laravel
+Esta é uma API REST desenvolvida em **Laravel 12**, com autenticação baseada em **Laravel Sanctum**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### ? A API permite:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ? Registro de usuário
+- ? Login
+- ? Logout
+- ? CRUD completo de produtos
+- ? Proteção de rotas autenticadas via token
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ??? Tecnologias Utilizadas
 
-## Learning Laravel
+| Tecnologia | Versão |
+|-----------|--------|
+| PHP | 8+ |
+| Laravel | 12.51.0 |
+| MySQL | - |
+| Laravel Sanctum | Autenticação via token |
+| Postman | Para testes |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ??? Decisões Técnicas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1?? Laravel Sanctum
 
-## Laravel Sponsors
+Foi utilizado o Laravel Sanctum por ser a solução oficial do Laravel para autenticação via token em APIs REST.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2?? Estrutura RESTful
 
-### Premium Partners
+As rotas seguem o padrão REST:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| POST | `/api/register` | Registrar usuário |
+| POST | `/api/login` | Login |
+| POST | `/api/logout` | Logout (protegido) |
+| GET | `/api/products` | Listar produtos |
+| GET | `/api/products/{id}` | Exibir produto |
+| POST | `/api/products` | Criar produto |
+| PUT | `/api/products/{id}` | Atualizar produto |
+| DELETE | `/api/products/{id}` | Deletar produto |
 
-## Contributing
+### 3?? Proteção de Rotas
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+As rotas que modificam dados estão protegidas com:
 
-## Code of Conduct
+```
+auth:sanctum
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Isso garante que apenas usuários autenticados possam criar, editar ou remover produtos.
 
-## Security Vulnerabilities
+## ?? Como Rodar o Projeto
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1?? Clonar o repositório
+```bash
+git clone <url-do-repositorio>
+cd nome-do-projeto
+```
 
-## License
+### 2?? Instalar dependências
+```bash
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 3?? Configurar o `.env`
+Copiar o arquivo de exemplo:
+```bash
+cp .env.example .env
+```
+
+### 4?? Configurar o banco de dados
+
+No arquivo `.env`, adicione:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=uma-penca
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+
+### 5?? Gerar chave da aplicação
+```bash
+php artisan key:generate
+```
+
+### 6?? Rodar as migrations
+```bash
+php artisan migrate
+```
+
+Isso criará as tabelas:
+- `users`
+- `personal_access_tokens`
+- `products` (caso criada)
+
+### 7?? Rodar o servidor
+```bash
+php artisan serve
+```
+
+A API estará disponível em:
+
+```
+http://127.0.0.1:8000
+```
+
+## ?? Fluxo de Autenticação
+
+### ?? Registrar
+**Endpoint:** `POST /api/register`
+
+**Body (JSON):**
+```json
+{
+  "name": "Usuario",
+  "email": "usuario@email.com",
+  "password": "123456"
+}
+```
+
+### ?? Login
+**Endpoint:** `POST /api/login`
+
+**Retorna:**
+```json
+{
+  "token": "token_gerado"
+}
+```
+
+### ??? Usar Token nas Rotas Protegidas
+
+Adicionar no Header:
+```
+Authorization: Bearer SEU_TOKEN_AQUI
+```
+
+### ?? Logout
+**Endpoint:** `POST /api/logout`
+
+Remove o token atual.
+
+
+## ?? Estrutura Principal
+
+```
+app/
+ ??? Http/Controllers/
+ ?    ??? AuthController.php
+ ?    ??? ProductController.php
+routes/
+ ??? api.php
+database/
+ ??? migrations/
+```
+
+## ? Considerações Finais
+
+- ?? Código seguindo padrão MVC
+- ?? Rotas separadas entre públicas e protegidas
+- ?? Autenticação stateless via token
+- ?? Estrutura preparada para fácil escalabilidade
+- ?? API desenvolvida seguindo boas práticas REST
