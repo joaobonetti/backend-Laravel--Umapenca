@@ -57,7 +57,7 @@ Isso garante que apenas usuários autenticados possam criar, editar ou remover p
 
 ### 1️⃣ Clonar o repositório
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/joaobonetti/backend-Laravel--Umapenca
 cd nome-do-projeto
 ```
 
