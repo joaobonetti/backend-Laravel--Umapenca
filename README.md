@@ -1,40 +1,40 @@
-# ??? API de Produtos Uma Penca ? Laravel 12
+# 🛍️ API de Produtos Uma Penca – Laravel 12
 
-## ?? Sobre o Projeto
+## 📋 Sobre o Projeto
 
-Esta � uma API REST desenvolvida em **Laravel 12**, com autentica��o baseada em **Laravel Sanctum**.
+Esta é uma API REST desenvolvida em **Laravel 12**, com autenticação baseada em **Laravel Sanctum**.
 
-### ? A API permite:
+### ✨ A API permite:
 
-- ? Registro de usu�rio
-- ? Login
-- ? Logout
-- ? CRUD completo de produtos
-- ? Prote��o de rotas autenticadas via token
+- ✅ Registro de usuário
+- ✅ Login
+- ✅ Logout
+- ✅ CRUD completo de produtos
+- ✅ Proteção de rotas autenticadas via token
 
-## ??? Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-| Tecnologia | Vers�o |
+| Tecnologia | Versão |
 |-----------|--------|
 | PHP | 8+ |
 | Laravel | 12.51.0 |
 | MySQL | - |
-| Laravel Sanctum | Autentica��o via token |
+| Laravel Sanctum | Autenticação via token |
 | Postman | Para testes |
 
-## ??? Decis�es T�cnicas
+## 🏗️ Decisões Técnicas
 
-### 1?? Laravel Sanctum
+### 1️⃣ Laravel Sanctum
 
-Foi utilizado o Laravel Sanctum por ser a solu��o oficial do Laravel para autentica��o via token em APIs REST.
+Foi utilizado o Laravel Sanctum por ser a solução oficial do Laravel para autenticação via token em APIs REST.
 
-### 2?? Estrutura RESTful
+### 2️⃣ Estrutura RESTful
 
-As rotas seguem o padr�o REST:
+As rotas seguem o padrão REST:
 
-| M�todo | Endpoint | Descri��o |
+| Método | Endpoint | Descrição |
 |--------|----------|-----------|
-| POST | `/api/register` | Registrar usu�rio |
+| POST | `/api/register` | Registrar usuário |
 | POST | `/api/login` | Login |
 | POST | `/api/logout` | Logout (protegido) |
 | GET | `/api/products` | Listar produtos |
@@ -43,36 +43,36 @@ As rotas seguem o padr�o REST:
 | PUT | `/api/products/{id}` | Atualizar produto |
 | DELETE | `/api/products/{id}` | Deletar produto |
 
-### 3?? Prote��o de Rotas
+### 3️⃣ Proteção de Rotas
 
-As rotas que modificam dados est�o protegidas com:
+As rotas que modificam dados estão protegidas com:
 
 ```
 auth:sanctum
 ```
 
-Isso garante que apenas usu�rios autenticados possam criar, editar ou remover produtos.
+Isso garante que apenas usuários autenticados possam criar, editar ou remover produtos.
 
-## ?? Como Rodar o Projeto
+## 🚀 Como Rodar o Projeto
 
-### 1?? Clonar o reposit�rio
+### 1️⃣ Clonar o repositório
 ```bash
 git clone <url-do-repositorio>
 cd nome-do-projeto
 ```
 
-### 2?? Instalar depend�ncias
+### 2️⃣ Instalar dependências
 ```bash
 composer install
 ```
 
-### 3?? Configurar o `.env`
+### 3️⃣ Configurar o `.env`
 Copiar o arquivo de exemplo:
 ```bash
 cp .env.example .env
 ```
 
-### 4?? Configurar o banco de dados
+### 4️⃣ Configurar o banco de dados
 
 No arquivo `.env`, adicione:
 ```env
@@ -84,35 +84,35 @@ DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 ```
 
-### 5?? Gerar chave da aplica��o
+### 5️⃣ Gerar chave da aplicação
 ```bash
 php artisan key:generate
 ```
 
-### 6?? Rodar as migrations
+### 6️⃣ Rodar as migrations
 ```bash
 php artisan migrate
 ```
 
-Isso criar� as tabelas:
+Isso criará as tabelas:
 - `users`
 - `personal_access_tokens`
 - `products` (caso criada)
 
-### 7?? Rodar o servidor
+### 7️⃣ Rodar o servidor
 ```bash
 php artisan serve
 ```
 
-A API estar� dispon�vel em:
+A API estará disponível em:
 
 ```
 http://127.0.0.1:8000
 ```
 
-## ?? Fluxo de Autentica��o
+## 🔐 Fluxo de Autenticação
 
-### ?? Registrar
+### 📝 Registrar
 **Endpoint:** `POST /api/register`
 
 **Body (JSON):**
@@ -124,7 +124,7 @@ http://127.0.0.1:8000
 }
 ```
 
-### ?? Login
+### 🔑 Login
 **Endpoint:** `POST /api/login`
 
 **Retorna:**
@@ -134,36 +134,36 @@ http://127.0.0.1:8000
 }
 ```
 
-### ??? Usar Token nas Rotas Protegidas
+### 🛡️ Usar Token nas Rotas Protegidas
 
 Adicionar no Header:
 ```
 Authorization: Bearer SEU_TOKEN_AQUI
 ```
 
-### ?? Logout
+### 🚪 Logout
 **Endpoint:** `POST /api/logout`
 
 Remove o token atual.
 
 
-## ?? Estrutura Principal
+## 📁 Estrutura Principal
 
 ```
 app/
- ??? Http/Controllers/
- ?    ??? AuthController.php
- ?    ??? ProductController.php
+ ├── Http/Controllers/
+ │    ├── AuthController.php
+ │    └── ProductController.php
 routes/
- ??? api.php
+ ├── api.php
 database/
- ??? migrations/
+ ├── migrations/
 ```
 
-## ? Considera��es Finais
+## ✅ Considerações Finais
 
-- ?? C�digo seguindo padr�o MVC
-- ?? Rotas separadas entre p�blicas e protegidas
-- ?? Autentica��o stateless via token
-- ?? Estrutura preparada para f�cil escalabilidade
-- ?? API desenvolvida seguindo boas pr�ticas REST
+- ✔️ Código seguindo padrão MVC
+- ✔️ Rotas separadas entre públicas e protegidas
+- ✔️ Autenticação stateless via token
+- ✔️ Estrutura preparada para fácil escalabilidade
+- ✔️ API desenvolvida seguindo boas práticas REST
